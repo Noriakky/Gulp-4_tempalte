@@ -1,0 +1,23 @@
+html {
+  color:blue;
+}
+div {
+  p {
+    font-weight: normal;
+    color: red;
+  }
+}
+
+// 変数のテスト
+$fontColor: #525252;
+
+h1 {
+  color: $fontColor;
+display: flex;
+
+}
+h2 {
+  color: $fontColor;
+  display: flex;
+  color: red;
+}

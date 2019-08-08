@@ -1,0 +1,23 @@
+html {
+  color: blue;
+}
+
+div p {
+  color: red;
+  font-weight: normal;
+}
+
+h1 {
+  color: #525252;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+h2 {
+  color: #525252;
+  color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
