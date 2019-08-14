@@ -2,13 +2,18 @@ html {
   color: blue;
 }
 
-div p {
-  color: red;
+p {
+  color: blue;
   font-weight: normal;
+}
+
+p.red {
+  color: red;
 }
 
 h1 {
   color: #525252;
+  color: blue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

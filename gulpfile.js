@@ -1,4 +1,4 @@
-const { src, dest, watch, parallel, series } = require("gulp");
+const { src, dest, watch, parallel, series, task } = require("gulp");
 //const gulp = require('gulp');
 const sass = require("gulp-sass");
 const plumber = require('gulp-plumber');
@@ -37,73 +37,24 @@ const compileSass = () =>
     })
   ]))
   .pipe(postcss([cssdeclsort({ order: 'alphabetically'})]))
-  .pipe(gulp.dest(dir.src + "css"))
+  .pipe(dest(dir.src + "css"))
+
+const bs_init = (done) => 
+  browsersSync.init({
+    server: {
+      baseDir: dir.src,
+      index: "index.html"
+    }
+  })
 
 
-const watchSassFiles = () => watch(dir.src + "scss/**/*.scss", compileSass);
-exports.default = watchSassFiles;
+function bs_reload(done) {
+  browsersSync.reload();
+  done();
+}
 
-// gulp.task('sass', function(){
-//   return gulp
-//   .src(dir.src + "scss/**/*.scss")
-//   .pipe(
-//     plumber({
-//       errorHandler: notify.onError(
-//         "Error: <%= error.message %>"
-//         )
-//       })
-//    )
-// //  .pipe(sassGlob())
-//   .pipe(
-//     sass({
-//       outputStyle: 'expanded'
-//     })
-//   )
-//   .pipe( postcss([
-//     autoprefixer({
-//       cascade:false
-//     })
-//   ]) )
-//   .pipe( postcss([ cssdeclsort({ order: 'alphabetically'})]))
-//   .pipe(gulp.dest(dir.src + "css"))
-// });
-// gulp.task('bs-reload', function(done){
-//   browsersSync.reload();
-//   done();
-// });
+const watchSassFiles = () => watch(watch_reload, series(compileSass, bs_reload));
 
-// gulp.task('browser-sync', function(done){
-//   browsersSync.init({
-//     server: {
-//       baseDir: dir.src,
-//       index: "index.html"
-//     }
-//   })
-//   done();
-// });
-
-// 監視
-// gulp.task('watch', function(done){
-// gulp.watch(dir.src + 'scss/**/*.scss', gulp.task('sass'));
-// gulp.watch(watch_reload, gulp.task('bs-reload'));
-// });
-
-// default
-//gulp.task('default', gulp.series(gulp.parallel('browser-sync', 'watch')));
-
-// const compileSass = () =>
-//   // style.scssファイルを取得
-//   src(dir.src + "scss/**/*.scss", gulp.series("postcss"))
-//     // Sassのコンパイルを実行
-//     .pipe(
-//       // コンパイル後のCSSを展開
-//       sass({
-//         outputStyle: "expanded"
-//       })
-//     )
-//     .pipe(postcss(plugin))
-//     // cssフォルダー以下に保存
-//     .pipe(dest("css"));
-// const watchSassFiles = () => watch("css/style.scss", compileSass);
 // // npx gulpというコマンドを実行した時、watchSassFilesが実行されるようにします
-// exports.default = watchSassFiles;
+exports.default = series(parallel(bs_init, watchSassFiles));
+

@@ -1,12 +1,14 @@
 html {
   color:blue;
 }
-div {
+
   p {
     font-weight: normal;
-    color: red;
+    color: blue;
+    &.red {
+      color: red;
+    }
   }
-}
 
 // 変数のテスト
 $fontColor: #525252;
@@ -14,6 +16,7 @@ $fontColor: #525252;
 h1 {
   color: $fontColor;
 display: flex;
+color: blue;
 
 }
 h2 {
