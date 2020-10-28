@@ -24,3 +24,44 @@ h2 {
   display: flex;
   color: red;
 }
+
+.Page {
+  border: 3px solid chocolate;
+}
+.Page > * {
+  padding: 10px;
+  border: 3px solid #ccc;
+}
+.Page_Head {
+  background-color: tomato;
+}
+.Page_Nav  {
+  background-color: salmon;
+}
+.Page_Main {
+  background-color: limegreen;
+}
+.Page_Foot {
+  background-color: skyblue;
+}
+
+.Grid {
+  border: 3px solid chocolate;
+}
+.Grid_Item {
+  padding: 10px;
+  border: 3px solid #ccc;
+}
+
+.Page {
+  display: grid;
+  grid-template:
+    "head head" 1fr
+    "nav  main" minmax(100px, 1fr)
+    "foot foot" 2fr /
+    1fr   100px;
+}
+.Page_Head { grid-area: head; }
+.Page_Nav { grid-area: nav; }
+.Page_Main { grid-area: main; }
+.Page_Foot { grid-area: foot; }

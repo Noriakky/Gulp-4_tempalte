@@ -26,3 +26,71 @@ h2 {
   display: -ms-flexbox;
   display: flex;
 }
+
+.Page {
+  border: 3px solid chocolate;
+}
+
+.Page > * {
+  border: 3px solid #ccc;
+  padding: 10px;
+}
+
+.Page_Head {
+  background-color: tomato;
+}
+
+.Page_Nav {
+  background-color: salmon;
+}
+
+.Page_Main {
+  background-color: limegreen;
+}
+
+.Page_Foot {
+  background-color: skyblue;
+}
+
+.Grid {
+  border: 3px solid chocolate;
+}
+
+.Grid_Item {
+  border: 3px solid #ccc;
+  padding: 10px;
+}
+
+.Page {
+  -ms-grid-columns: 1fr 100px;
+  -ms-grid-rows: 1fr minmax(100px, 1fr) 2fr;
+  display: -ms-grid;
+  display: grid;
+  grid-template: "head head" 1fr "nav  main" minmax(100px, 1fr) "foot foot" 2fr/1fr 100px;
+}
+
+.Page_Head {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  -ms-grid-row: 1;
+  grid-area: head;
+}
+
+.Page_Nav {
+  -ms-grid-column: 1;
+  -ms-grid-row: 2;
+  grid-area: nav;
+}
+
+.Page_Main {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  grid-area: main;
+}
+
+.Page_Foot {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  -ms-grid-row: 3;
+  grid-area: foot;
+}

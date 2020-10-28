@@ -17,7 +17,7 @@ const watch_reload = [
   dir.src + '**/*.html'
 ]
 
-const compileSass = () => 
+const compileSass = () =>
   src(dir.src + "scss/**/*.scss")
   .pipe(
     plumber({
@@ -33,13 +33,14 @@ const compileSass = () =>
   )
   .pipe( postcss([
     autoprefixer({
+      grid: 'autoplace',
       cascade: false
     })
   ]))
   .pipe(postcss([cssdeclsort({ order: 'alphabetically'})]))
   .pipe(dest(dir.src + "css"))
 
-const bs_init = (done) => 
+const bs_init = (done) =>
   browsersSync.init({
     server: {
       baseDir: dir.src,
