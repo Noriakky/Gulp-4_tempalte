@@ -44,14 +44,23 @@ const compileSass = () =>
   .pipe(dest(dir.src + "css"))
 
 const bs_init = (done) =>
-connect.server({
-  port:8080,
-  base:'htdocs'
-}, function (){
-  browserSync({
-    proxy: 'localhost:8080'
-  });
-});
+// phpを使う場合はこちら
+// connect.server({
+//   port:8080,
+//   base:'htdocs'
+// }, function (){
+//   browserSync({
+//     proxy: 'localhost:8080'
+//   });
+// });
+
+// 静的ファイルコーディングはこちら
+browserSync.init({
+  server: {
+    baseDir: dir.src,
+    index: "index.html"
+  }
+})
 
 
 function bs_reload(done) {
